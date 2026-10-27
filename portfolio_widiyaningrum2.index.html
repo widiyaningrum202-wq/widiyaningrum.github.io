@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widiyaningrum | Master Portfolio Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts Inter & Space Grotesk -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#0f172a',
+                            900: '#0b0f19',
+                            950: '#060911',
+                        },
+                        brand: {
+                            blue: '#2563eb',
+                            violet: '#7c3aed',
+                            indigo: '#4f46e5',
+                            emerald: '#10b981',
+                            rose: '#f43f5e',
+                            amber: '#f59e0b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #060911;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 12px 28px -10px rgba(99, 102, 241, 0.25);
+        }
+    </style>
+</head>
+<body class="bg-navy-950 text-slate-100 font-sans antialiased selection:bg-brand-indigo selection:text-white">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-navy-950/90 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-blue via-brand-indigo to-brand-violet flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20 text-lg">
+                    W
+                </div>
+                <div>
+                    <span class="font-heading font-bold text-white tracking-tight block leading-tight text-base">Widiyaningrum</span>
+                    <span class="text-xs text-brand-indigo font-medium">Master Portfolio Hub</span>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center space-x-6 text-xs font-semibold uppercase tracking-wider text-slate-300">
+                <a href="#about" class="hover:text-white transition-colors">About</a>
+                <a href="#projects" class="hover:text-white transition-colors">Portfolio Projects</a>
+                <a href="#skills" class="hover:text-white transition-colors">Skills & Certifications</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Quick Direct Contact Header Actions -->
+            <div class="hidden sm:flex items-center gap-2">
+                <a href="mailto:widiyaningrum202@gmail.com" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-indigo-500/50 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-medium" title="Direct Email">
+                    <i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i> Email
+                </a>
+                <a href="https://wa.me/6282132352495" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-emerald-500/50 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-medium" title="WhatsApp Chat">
+                    <i data-lucide="message-circle" class="w-4 h-4 text-emerald-400"></i> WA
+                </a>
+                <a href="https://www.linkedin.com/in/widiyaningrum-539125220" target="_blank" rel="noopener noreferrer" class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 text-slate-300 hover:text-white transition-all flex items-center gap-1.5 text-xs font-medium" title="LinkedIn Profile">
+                    <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i> LinkedIn
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-900 focus:outline-none">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-800 bg-navy-900 px-4 pt-3 pb-5 space-y-3 text-sm font-medium">
+            <a href="#about" class="block py-1 text-slate-300 hover:text-white">About</a>
+            <a href="#projects" class="block py-1 text-slate-300 hover:text-white">Portfolio Projects</a>
+            <a href="#skills" class="block py-1 text-slate-300 hover:text-white">Skills & Certifications</a>
+            <a href="#contact" class="block py-1 text-slate-300 hover:text-white">Contact Direct Links</a>
+            <div class="pt-3 border-t border-slate-800 flex items-center gap-2">
+                <a href="mailto:widiyaningrum202@gmail.com" class="px-3 py-2 rounded-lg bg-indigo-600 text-white text-xs font-semibold flex items-center gap-1.5">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i> Email
+                </a>
+                <a href="https://wa.me/6282132352495" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1.5">
+                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> WA
+                </a>
+                <a href="https://www.linkedin.com/in/widiyaningrum-539125220" target="_blank" rel="noopener noreferrer" class="px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold flex items-center gap-1.5">
+                    <i data-lucide="linkedin" class="w-3.5 h-3.5"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="about" class="relative py-16 lg:py-24 overflow-hidden border-b border-slate-800/80">
+        <!-- Glow Effects -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[380px] bg-indigo-600/15 blur-[130px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/2 right-5 w-[350px] h-[350px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Hero Content Left -->
+                <div class="lg:col-span-8 space-y-6">
+
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-white leading-tight tracking-tight">
+                        Transforming Operational Data into <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-indigo via-indigo-400 to-emerald-400">Strategic Business Value</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+                        Hi, I am Widiyaningrum with proven frontline experience in fintech & e-commerce payment operations (<strong class="text-white">Shopee SPayLater/SPinjam & DANA E-Wallet</strong>). Skilled in turning raw operational datasets into actionable risk mitigation playbooks, underwriting strategies, and customer retention models using Microsoft Excel and data analytics.
+                    </p>
+
+                    <!-- Target Roles Badges -->
+                    <div class="space-y-2 pt-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-wider block">Specialized Target Roles:</span>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-3 py-1.5 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Credit Operations & Project Management
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-blue-500/15 text-blue-300 border border-blue-500/30 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> Customer Data Analyst
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="headset" class="w-3.5 h-3.5"></i> Customer Support
+                            </span>
+                            <span class="px-3 py-1.5 rounded-lg bg-violet-500/15 text-violet-300 border border-violet-500/30 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="file-check-2" class="w-3.5 h-3.5"></i> Administrative Support
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Direct Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-3 pt-4">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-blue to-brand-indigo hover:from-blue-600 hover:to-indigo-600 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2">
+                            <i data-lucide="folder-kanban" class="w-4 h-4"></i> Explore Portfolio Projects
+                        </a>
+                        <a href="#contact" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-800 text-slate-200 font-semibold text-xs uppercase tracking-wider border border-slate-700 transition-all flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i> Contact Me Directly
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Key Competency Card -->
+                <div class="lg:col-span-4">
+                    <div class="glass-card rounded-2xl p-6 relative overflow-hidden border border-slate-800 shadow-2xl space-y-5">
+                        
+                        <div class="space-y-3.5 text-xs">
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-400 shrink-0 mt-0.5">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white block">Fintech Payment Expertise</strong>
+                                    <span class="text-slate-400 text-[11px]">SPayLater, SPinjam & DANA payment friction resolution.</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400 shrink-0 mt-0.5">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white block">Credit Risk & NPL Audit</strong>
+                                    <span class="text-slate-400 text-[11px]">38,576 records ($435.7M) evaluated for 15.04% NPL.</span>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-2.5">
+                                <div class="p-1.5 rounded-lg bg-violet-500/10 text-violet-400 shrink-0 mt-0.5">
+                                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                                </div>
+                                <div>
+                                    <strong class="text-white block">RFM Customer Segmentation</strong>
+                                    <span class="text-slate-400 text-[11px]">4,300+ customer profiles analyzed in Excel.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Direct Contact Bar -->
+                        <div class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+                            <span class="text-slate-400 font-medium">Quick Links:</span>
+                            <div class="flex items-center gap-2">
+                                <a href="mailto:widiyaningrum202@gmail.com" class="p-2 rounded-lg bg-slate-900 hover:bg-indigo-600/30 text-indigo-300 transition-colors" title="Email">
+                                    <i data-lucide="mail" class="w-4 h-4"></i>
+                                </a>
+                                <a href="https://wa.me/6282132352495" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-900 hover:bg-emerald-600/30 text-emerald-400 transition-colors" title="WhatsApp">
+                                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/in/widiyaningrum-539125220" target="_blank" rel="noopener noreferrer" class="p-2 rounded-lg bg-slate-900 hover:bg-blue-600/30 text-blue-400 transition-colors" title="LinkedIn">
+                                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO PROJECTS SECTION -->
+    <section id="projects" class="py-20 bg-navy-900 border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <h2 class="text-xs font-bold text-brand-indigo uppercase tracking-widest mb-2">Portfolio Showcase</h2>
+                <h3 class="text-2xl sm:text-3xl font-heading font-extrabold text-white tracking-tight">Interactive Case Studies & Data Analytics</h3>
+                <p class="text-slate-400 text-xs sm:text-sm mt-2">Comprehensive hands-on projects analyzing credit risk, operational bottlenecks, and customer RFM behavioral segmentation.</p>
+            </div>
+
+            <!-- Role / Category Filter Tabs -->
+            <div class="flex justify-center mb-10">
+                <div class="inline-flex p-1.5 rounded-xl bg-navy-950 border border-slate-800 max-w-full overflow-x-auto">
+                    <button id="btn-filter-all" onclick="filterCategory('all')" class="px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-indigo text-white shadow-md">
+                        All Projects (3)
+                    </button>
+                    <button id="btn-filter-credit" onclick="filterCategory('credit')" class="px-5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-400 hover:text-white">
+                        Credit & Risk Analysis
+                    </button>
+                    <button id="btn-filter-rfm" onclick="filterCategory('rfm')" class="px-5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-400 hover:text-white">
+                        Customer Analytics (RFM)
+                    </button>
+                </div>
+            </div>
+
+            <!-- PROJECTS LIST -->
+            <div class="space-y-12">
+                
+                <!-- PROJECT 1: Credit Risk & Operational Bottleneck Analysis -->
+                <div id="project-card-1" class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-8 glass-card-hover" data-category="credit">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800 pb-6">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-md bg-rose-500/10 text-rose-400 text-xs font-bold border border-rose-500/20 uppercase tracking-wider">
+                                    Project 01 • Credit Operations & Risk
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">
+                                    Target Roles: Credit Operations | Project Management
+                                </span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mt-1">Credit Risk & Operational Bottleneck Analysis</h3>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+                                Evaluated a loan portfolio dataset of <strong class="text-white">38,576 records ($435.7M total loan value)</strong> using Microsoft Excel. Identified a <strong class="text-rose-400">15.04% NPL ratio</strong> ($65.5M in defaulted loans), mapped high-risk concentration in Grade B borrowers, and formulated underwriting policy DTI caps and automated Early Warning System (EWS) alerts.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 shrink-0">
+                            <button onclick="openPdfModal('https://drive.google.com/file/d/1pjFMQyebFMuiQl3RuUFBGQzCLHJCNNqc/preview', 'Credit Risk & Operational Bottleneck Analysis Deck')" class="px-4 py-2.5 rounded-xl bg-brand-indigo hover:bg-indigo-600 text-white font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/25">
+                                <i data-lucide="presentation" class="w-4 h-4"></i> View Presentation Deck
+                            </button>
+                            <a href="https://drive.google.com/file/d/1pjFMQyebFMuiQl3RuUFBGQzCLHJCNNqc/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-all flex items-center gap-1.5 border border-slate-700">
+                                <i data-lucide="external-link" class="w-4 h-4 text-emerald-400"></i> Open Drive PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics Grid -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
+                            <span class="text-[11px] font-medium text-slate-400 block">Total Portfolio</span>
+                            <div class="text-xl font-extrabold text-white mt-1">$435.75M</div>
+                            <span class="text-[10px] text-slate-500 block">38,576 Loan Records</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30">
+                            <span class="text-[11px] font-medium text-rose-300 block">NPL Ratio (Charged Off)</span>
+                            <div class="text-xl font-extrabold text-rose-400 mt-1">15.04%</div>
+                            <span class="text-[10px] text-rose-400/80 block">$65.53M (5,333 Defaults)</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30">
+                            <span class="text-[11px] font-medium text-amber-300 block">Top Risk Grade</span>
+                            <div class="text-xl font-extrabold text-amber-400 mt-1">Grade B</div>
+                            <span class="text-[10px] text-amber-400/80 block">$14.89M (1,343 Member Defaults)</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-indigo-950/20 border border-indigo-500/30">
+                            <span class="text-[11px] font-medium text-indigo-300 block">Highest Purpose Default</span>
+                            <div class="text-xl font-extrabold text-indigo-400 mt-1">Debt Consol.</div>
+                            <span class="text-[10px] text-indigo-400/80 block">$36.25M (2,651 Member Defaults)</span>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Chart & Deep Dive -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+                        <div class="lg:col-span-7 bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+                                <div>
+                                    <h4 class="text-xs font-bold text-white uppercase tracking-wider">Default Concentration Visualizer</h4>
+                                    <p class="text-[11px] text-slate-400">Toggle views to inspect Charged Off distributions</p>
+                                </div>
+                                <div class="inline-flex p-1 rounded-lg bg-navy-950 border border-slate-800 text-[11px]">
+                                    <button id="btn-chart-grade" onclick="updateCreditChart('grade')" class="px-2.5 py-1 rounded font-semibold bg-brand-indigo text-white transition-all">By Grade</button>
+                                    <button id="btn-chart-purpose" onclick="updateCreditChart('purpose')" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white transition-all">By Purpose</button>
+                                    <button id="btn-chart-home" onclick="updateCreditChart('home')" class="px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white transition-all">By Home Ownership</button>
+                                </div>
+                            </div>
+                            <div class="relative h-60 w-full">
+                                <canvas id="creditRiskChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-5 space-y-4">
+                            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 space-y-1.5">
+                                <h4 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                                    <i data-lucide="search" class="w-3.5 h-3.5 text-indigo-400"></i> Root Cause Diagnosis
+                                </h4>
+                                <p class="text-xs text-slate-300 leading-relaxed">
+                                    Borrowers seeking <strong class="text-white">Debt Consolidation</strong> under <strong class="text-white">Grade B</strong> risk categories possess existing high Debt-to-Income (DTI) ratios. Adding new credit lines while holding active <strong class="text-white">Mortgages ($31.7M defaults)</strong> elevates default probabilities.
+                                </p>
+                            </div>
+
+                            <div class="bg-slate-900/90 rounded-xl p-4 border border-slate-800 space-y-2">
+                                <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
+                                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Underwriting Policy Recommendations
+                                </h4>
+                                <ul class="space-y-1.5 text-xs text-slate-300">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span>Tighten Debt-to-Income (DTI) approval thresholds for Debt Consolidation applicants.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span>Implement automated Early Warning System (EWS) risk alerts for Grade B mortgage holders.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 2: Supermarket Customer Segmentation Report (RFM) -->
+                <div id="project-card-2" class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-8 glass-card-hover" data-category="rfm">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800 pb-6">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-bold border border-indigo-500/20 uppercase tracking-wider">
+                                    Project 02 • Customer Analytics (RFM)
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">
+                                    Target Roles: Customer Data Analyst | Customer Support / CRM
+                                </span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mt-1">Supermarket Customer Segmentation Report (RFM Analysis)</h3>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+                                Audited transactional data of <strong class="text-white">470 active supermarket clients</strong> in Microsoft Excel. Utilized 33rd & 66th percentile scoring logic for Recency, Frequency, and Monetary (RFM) behavioral mapping to formulate targeted retail playbooks.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 shrink-0">
+                            <button onclick="openPdfModal('https://drive.google.com/file/d/1yOEXltr_uSLA-yhoNcBAFq5v6N7bQZIk/preview', 'Supermarket Customer Segmentation Report')" class="px-4 py-2.5 rounded-xl bg-brand-violet hover:bg-violet-600 text-white font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-violet-600/25">
+                                <i data-lucide="file-text" class="w-4 h-4"></i> View Full Report
+                            </button>
+                            <a href="https://drive.google.com/file/d/1yOEXltr_uSLA-yhoNcBAFq5v6N7bQZIk/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-all flex items-center gap-1.5 border border-slate-700">
+                                <i data-lucide="external-link" class="w-4 h-4 text-emerald-400"></i> Open Drive PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <!-- Doughnut Chart -->
+                        <div class="lg:col-span-5 bg-slate-900/90 rounded-xl p-5 border border-slate-800 text-center">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Segment Distribution (470 Clients)</h4>
+                            <p class="text-[11px] text-slate-400 mb-3">Supermarket RFM Behavioral Percentiles</p>
+                            <div class="relative h-52 w-full flex items-center justify-center">
+                                <canvas id="rfmSupermarketChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Segment Action Cards -->
+                        <div class="lg:col-span-7 space-y-3">
+                            <div class="p-3.5 rounded-xl bg-slate-900/90 border border-rose-500/30">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-rose-400">At-Risk Core Base (60.0% / 283 Clients)</span>
+                                    <span class="text-[10px] text-slate-400">Recency Churn Risk</span>
+                                </div>
+                                <p class="text-xs text-slate-300 mt-1">Infrequent buyers. <strong class="text-emerald-400">Playbook:</strong> Launch "Win-Back" campaigns with dynamic limited-time discount vouchers and "Welcome Back" bundles.</p>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-slate-900/90 border border-indigo-500/30">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-indigo-300">Casual Middle Tier (38.3% / 180 Clients)</span>
+                                    <span class="text-[10px] text-slate-400">Moderate Frequency</span>
+                                </div>
+                                <p class="text-xs text-slate-300 mt-1">Regular buyers. <strong class="text-indigo-400">Playbook:</strong> Nurture into VIPs using tiered loyalty point multipliers and curated "frequently bought together" upsells.</p>
+                            </div>
+
+                            <div class="p-3.5 rounded-xl bg-slate-900/90 border border-emerald-500/30">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xs font-bold text-emerald-400">Top VIP Champions (1.7% / 7 Clients)</span>
+                                    <span class="text-[10px] text-slate-400">Highest Monetary Yield</span>
+                                </div>
+                                <p class="text-xs text-slate-300 mt-1">Ultra-loyal elite. <strong class="text-amber-400">Playbook:</strong> Provide early access previews, exclusive VIP pricing, and direct support lines.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROJECT 3: E-Commerce Customer Behavioral Segmentation -->
+                <div id="project-card-3" class="glass-card rounded-2xl p-6 sm:p-8 border border-slate-800 space-y-8 glass-card-hover" data-category="rfm">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-slate-800 pb-6">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
+                                <span class="px-3 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-bold border border-emerald-500/20 uppercase tracking-wider">
+                                    Project 03 • Customer Analytics (RFM)
+                                </span>
+                                <span class="px-2.5 py-0.5 rounded bg-slate-800 text-slate-300 text-xs font-medium">
+                                    Target Roles: Customer Data Analyst | Customer Support | Administrative
+                                </span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-heading font-bold text-white mt-1">E-Commerce Customer Behavioral Segmentation (RFM Analysis)</h3>
+                            <p class="text-slate-300 text-xs sm:text-sm mt-2 max-w-3xl leading-relaxed">
+                                Processed <strong class="text-white">4,373 active customer IDs (4,000+ transaction rows)</strong> in Microsoft Excel. Applied 1-5 point scoring logic and automated Pivot Table reporting to evaluate retention health and reduce Customer Acquisition Cost (CAC).
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 shrink-0">
+                            <button onclick="openPdfModal('https://drive.google.com/file/d/1pZX6eWhy_LmVEygS4vgaXA3zRNQNKysV/preview', 'E-Commerce RFM Customer Segmentation Deck')" class="px-4 py-2.5 rounded-xl bg-brand-blue hover:bg-blue-600 text-white font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-blue-600/25">
+                                <i data-lucide="presentation" class="w-4 h-4"></i> View Presentation Deck
+                            </button>
+                            <a href="https://drive.google.com/file/d/1pZX6eWhy_LmVEygS4vgaXA3zRNQNKysV/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-all flex items-center gap-1.5 border border-slate-700">
+                                <i data-lucide="external-link" class="w-4 h-4 text-emerald-400"></i> Open Drive PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-6 bg-slate-900/90 rounded-xl p-5 border border-slate-800">
+                            <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-1">Customer Volume per Segment</h4>
+                            <p class="text-[11px] text-slate-400 mb-3">4,373 Total Active E-Commerce Profiles</p>
+                            <div class="relative h-52 w-full">
+                                <canvas id="rfmEcommerceChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-6 space-y-3">
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-emerald-500/30 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <strong class="text-xs text-emerald-400">Top Customer Tier (85% / 3,709 Clients)</strong>
+                                    <span class="text-[10px] text-slate-400">Core Revenue Driver</span>
+                                </div>
+                                <p class="text-xs text-slate-300">Dominant user base indicating exceptional retention. <strong class="text-white">Action:</strong> Provide early product access and VIP loyalty rewards.</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-indigo-500/30 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <strong class="text-xs text-indigo-300">Casual Customers (11% / 474 Clients)</strong>
+                                    <span class="text-[10px] text-slate-400">Up-Selling Potential</span>
+                                </div>
+                                <p class="text-xs text-slate-300">Moderate buyers. <strong class="text-white">Action:</strong> Trigger repeat visits via product bundle recommendations and second-purchase discounts.</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-slate-900/90 border border-rose-500/30 space-y-1">
+                                <div class="flex items-center justify-between">
+                                    <strong class="text-xs text-rose-400">At-Risk Customers (4% / 190 Clients)</strong>
+                                    <span class="text-[10px] text-slate-400">Reactivation Focus</span>
+                                </div>
+                                <p class="text-xs text-slate-300">Dormant spenders. <strong class="text-white">Action:</strong> Send "We Miss You" time-sensitive offers to prevent churn and lower CAC by up to 20%.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS & CERTIFICATIONS SECTION -->
+    <section id="skills" class="py-20 border-b border-slate-800/80 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <h2 class="text-xs font-bold text-brand-indigo uppercase tracking-widest mb-2">Capabilities & Qualifications</h2>
+                <h3 class="text-2xl sm:text-3xl font-heading font-extrabold text-white tracking-tight">Technical Tooling & Professional Certifications</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Card 1: Technical Tools -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="p-3 rounded-xl bg-blue-500/10 text-blue-400 w-fit">
+                        <i data-lucide="file-spreadsheets" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Technical Analytics Tools</h4>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Microsoft Excel (Pivot Tables, VLOOKUP, XLOOKUP)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">IFS / SUMIFS Advanced Formula Logic</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Google Sheets</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Operational Reporting</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Project Charter Drafting</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">SLA Bottleneck Analysis</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">QGIS Fundamentals</span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Functional Competencies -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="p-3 rounded-xl bg-indigo-500/10 text-indigo-400 w-fit">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Functional Expertise</h4>
+                    <div class="flex flex-wrap gap-2 text-xs">
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Credit Risk & NPL Audit</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Customer Risk Assessment</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Payment Dispute Resolution (SPayLater/SPinjam)</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Floor Management Support</span>
+                        <span class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-200 border border-slate-800 font-medium">Administrative Workflow Optimization</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Certifications -->
+                <div class="glass-card rounded-2xl p-6 border border-slate-800 space-y-4">
+                    <div class="p-3 rounded-xl bg-emerald-500/10 text-emerald-400 w-fit">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <h4 class="text-base font-bold text-white">Verified Certifications</h4>
+                    <ul class="space-y-3 text-xs text-slate-300">
+                        <li class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
+                            <i data-lucide="badge-check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong class="text-white block">Data Analysis Techniques in Contact Center</strong>
+                                <span class="text-slate-400 text-[11px]">karier.mu & PT VADS Indonesia • 2025</span>
+                            </div>
+                        </li>
+                        <li class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
+                            <i data-lucide="badge-check" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong class="text-white block">Mastering Microsoft Office A-Z</strong>
+                                <span class="text-slate-400 text-[11px]">Kelas.work • 2023</span>
+                            </div>
+                        </li>
+                        <li class="p-3 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-2.5">
+                            <i data-lucide="badge-check" class="w-4 h-4 text-blue-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong class="text-white block">Competency Certificate: Junior Computer Operator</strong>
+                                <span class="text-slate-400 text-[11px]">UIN Sunan Ampel Surabaya • 2022</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER & DIRECT CONTACT -->
+    <footer id="contact" class="py-16 bg-navy-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            
+            <div class="max-w-2xl mx-auto space-y-3">
+                <h3 class="text-2xl sm:text-3xl font-heading font-extrabold text-white">Let's Connect & Collaborate</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">
+                    Open for opportunities in <strong class="text-white">Credit Operations & Project Management, Customer Data Analyst, Customer Support, and Administrative Support</strong>.
+                </p>
+            </div>
+
+            <!-- Direct Contact Buttons -->
+            <div class="flex flex-wrap justify-center items-center gap-4">
+                <a href="mailto:widiyaningrum202@gmail.com" class="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/25">
+                    <i data-lucide="mail" class="w-4 h-4"></i> Email Me
+                </a>
+                <a href="https://wa.me/6282132352495" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition-all flex items-center gap-2 shadow-lg shadow-emerald-600/25">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp Chat
+                </a>
+                <a href="https://www.linkedin.com/in/widiyaningrum-539125220" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl glass-card hover:bg-slate-800 text-slate-200 font-semibold text-xs border border-slate-700 transition-all flex items-center gap-2">
+                    <i data-lucide="linkedin" class="w-4 h-4 text-blue-400"></i> LinkedIn Profile
+                </a>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span>© 2026 Widiyaningrum. Master Portfolio Hub.</span>
+                <span>Open for Credit Operations, Data Analytics & Operations Support.</span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- EMBEDDED GOOGLE DRIVE PDF MODAL -->
+    <div id="pdf-viewer-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy-950/85 backdrop-blur-md hidden">
+        <div class="glass-card rounded-2xl w-full max-w-4xl border border-slate-700 overflow-hidden shadow-2xl flex flex-col h-[85vh]">
+            <div class="p-4 border-b border-slate-800 flex items-center justify-between bg-navy-900">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="file-text" class="w-4 h-4 text-brand-indigo"></i>
+                    <h4 id="pdf-modal-title" class="font-bold text-white text-xs sm:text-sm">Document Viewer</h4>
+                </div>
+                <button onclick="closePdfModal()" class="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="flex-1 w-full bg-slate-900 relative">
+                <iframe id="pdf-modal-iframe" src="" class="w-full h-full border-none" allow="autoplay"></iframe>
+            </div>
+
+            <div class="p-3 border-t border-slate-800 bg-navy-900 flex items-center justify-between text-xs">
+                <span class="text-slate-400">Embedded Google Drive PDF Viewer</span>
+                <button onclick="closePdfModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:text-white font-semibold">
+                    Close Viewer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
+    <script>
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filter Projects Category
+        function filterCategory(type) {
+            const p1 = document.getElementById('project-card-1');
+            const p2 = document.getElementById('project-card-2');
+            const p3 = document.getElementById('project-card-3');
+
+            const btnAll = document.getElementById('btn-filter-all');
+            const btnCredit = document.getElementById('btn-filter-credit');
+            const btnRfm = document.getElementById('btn-filter-rfm');
+
+            [btnAll, btnCredit, btnRfm].forEach(btn => {
+                btn.className = "px-5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-400 hover:text-white";
+            });
+
+            if (type === 'all') {
+                p1.classList.remove('hidden');
+                p2.classList.remove('hidden');
+                p3.classList.remove('hidden');
+                btnAll.className = "px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-indigo text-white shadow-md";
+            } else if (type === 'credit') {
+                p1.classList.remove('hidden');
+                p2.classList.add('hidden');
+                p3.classList.add('hidden');
+                btnCredit.className = "px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-indigo text-white shadow-md";
+            } else if (type === 'rfm') {
+                p1.classList.add('hidden');
+                p2.classList.remove('hidden');
+                p3.classList.remove('hidden');
+                btnRfm.className = "px-5 py-2 rounded-lg text-xs font-semibold transition-all bg-brand-indigo text-white shadow-md";
+            }
+        }
+
+        // PDF Embedded Viewer Modal
+        function openPdfModal(embedUrl, title) {
+            document.getElementById('pdf-modal-title').innerText = title;
+            document.getElementById('pdf-modal-iframe').src = embedUrl;
+            document.getElementById('pdf-viewer-modal').classList.remove('hidden');
+        }
+
+        function closePdfModal() {
+            document.getElementById('pdf-modal-iframe').src = "";
+            document.getElementById('pdf-viewer-modal').classList.add('hidden');
+        }
+
+        // CHART.JS INITIALIZATIONS
+        let creditChartInstance = null;
+
+        const creditChartData = {
+            grade: {
+                labels: ['Grade A', 'Grade B (Top Risk)', 'Grade C', 'Grade D', 'Grade E', 'Grade F/G'],
+                data: [5.2, 14.89, 12.1, 9.4, 6.8, 3.1],
+                colors: ['#3b82f6', '#f43f5e', '#f59e0b', '#8b5cf6', '#64748b', '#475569']
+            },
+            purpose: {
+                labels: ['Debt Consolidation', 'Credit Card', 'Home Imprv.', 'Major Purchase', 'Small Business', 'Other'],
+                data: [36.25, 12.40, 5.80, 4.20, 3.90, 2.98],
+                colors: ['#f43f5e', '#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#64748b']
+            },
+            home: {
+                labels: ['Mortgage', 'Rent', 'Own', 'Other'],
+                data: [31.74, 28.10, 5.20, 0.49],
+                colors: ['#f43f5e', '#8b5cf6', '#10b981', '#64748b']
+            }
+        };
+
+        function renderCreditChart(type) {
+            const ctx = document.getElementById('creditRiskChart').getContext('2d');
+            const dataset = creditChartData[type];
+
+            if (creditChartInstance) {
+                creditChartInstance.destroy();
+            }
+
+            creditChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dataset.labels,
+                    datasets: [{
+                        label: 'Defaulted Amount ($M)',
+                        data: dataset.data,
+                        backgroundColor: dataset.colors,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.05)' } }
+                    }
+                }
+            });
+        }
+
+        function updateCreditChart(type) {
+            ['grade', 'purpose', 'home'].forEach(t => {
+                const btn = document.getElementById(`btn-chart-${t}`);
+                if (t === type) {
+                    btn.className = "px-2.5 py-1 rounded font-semibold bg-brand-indigo text-white transition-all";
+                } else {
+                    btn.className = "px-2.5 py-1 rounded font-semibold text-slate-400 hover:text-white transition-all";
+                }
+            });
+            renderCreditChart(type);
+        }
+
+        function renderRfmSupermarketChart() {
+            const ctx = document.getElementById('rfmSupermarketChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['At-Risk Base (60%)', 'Casual Tier (38.3%)', 'Top VIP (1.7%)'],
+                    datasets: [{
+                        data: [283, 180, 7],
+                        backgroundColor: ['#f43f5e', '#6366f1', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { size: 10 } } }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        function renderRfmEcommerceChart() {
+            const ctx = document.getElementById('rfmEcommerceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Top Customers (85%)', 'Casual Customers (11%)', 'At-Risk (4%)'],
+                    datasets: [{
+                        label: 'Active Users',
+                        data: [3709, 474, 190],
+                        backgroundColor: ['#10b981', '#6366f1', '#f43f5e'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: 'rgba(255, 255, 255, 0.05)' } },
+                        y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        window.onload = function() {
+            renderCreditChart('grade');
+            renderRfmSupermarketChart();
+            renderRfmEcommerceChart();
+        };
+    </script>
+</body>
+</html>
